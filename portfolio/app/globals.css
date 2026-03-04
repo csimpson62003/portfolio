@@ -1,26 +1,171 @@
 @import "tailwindcss";
 
-:root {
-  --background: #dcdcdc;
-  --foreground: #171717;
-}
+/* ===========================
+   Theme Tokens
+   Organized: backgrounds, text, accents, surfaces
+   =========================== */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  /* Backgrounds */
+  --background: #f0f2f5;
+  --background-alt: #e2e6eb;
+  --surface: #ffffff;
+
+  /* Text */
+  --foreground: #1a1a2e;
+  --foreground-muted: #4a5568;
+
+  /* Accent: darkish blue */
+  --accent-primary: #2b3a55;
+  --accent-primary-hover: #1a2740;
+
+  /* Accent: green */
+  --accent-green: #2d8a4e;
+  --accent-green-hover: #236b3c;
+  --accent-green-light: rgba(45, 138, 78, 0.1);
+
+  /* Overlays & effects */
+  --overlay: rgba(0, 0, 0, 0.45);
+  --shadow-color: rgba(0, 0, 0, 0.08);
+
+  /* Borders */
+  --border: #d1d5db;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Backgrounds */
+    --background: #0f1624;
+    --background-alt: #1a2332;
+    --surface: #1e293b;
+
+    /* Text */
+    --foreground: #f1f5f9;
+    --foreground-muted: #94a3b8;
+
+    /* Accent: darkish blue */
+    --accent-primary: #5b8def;
+    --accent-primary-hover: #7da5f7;
+
+    /* Accent: green */
+    --accent-green: #4ade80;
+    --accent-green-hover: #6ee7a0;
+    --accent-green-light: rgba(74, 222, 128, 0.1);
+
+    /* Overlays & effects */
+    --overlay: rgba(0, 0, 0, 0.6);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+
+    /* Borders */
+    --border: #2d3a4d;
   }
 }
+
+/* ===========================
+   Tailwind Theme Mapping
+   =========================== */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-primary-hover: var(--accent-primary-hover);
+  --color-accent-green: var(--accent-green);
+  --color-accent-green-hover: var(--accent-green-hover);
+  --color-accent-green-light: var(--accent-green-light);
+  --color-overlay: var(--overlay);
+  --color-border: var(--border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ===========================
+   Base Styles
+   =========================== */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* ===========================
+   Reusable Utilities
+   =========================== */
+
+/* Smooth scroll for parallax, prevent overscroll bounce */
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+}
+
+/* Section spacing */
+.section-padding {
+  padding: 3rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 4rem 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 5rem 4rem;
+  }
+}
+
+/* Container */
+.container-content {
+  max-width: 72rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Accent underline decoration */
+.accent-line {
+  display: block;
+  width: 4rem;
+  height: 3px;
+  background: var(--accent-green);
+  border-radius: 2px;
+  margin-top: 1rem;
+}
+
+/* Full-viewport hero */
+.hero-full {
+  min-height: 100vh;
+}
+
+/* Skill pill */
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  background: var(--accent-green-light);
+  color: var(--accent-green);
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.skill-pill:hover {
+  transform: translateY(-2px);
+  background: var(--accent-green);
+  color: #fff;
+}
+
+/* Project row — minimal, no box */
+.project-row {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-row:last-child {
+  border-bottom: none;
 }

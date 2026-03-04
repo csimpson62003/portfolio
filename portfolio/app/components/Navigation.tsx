@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function Navigation() {
   return (
-    <nav className="w-full p-4 bg-background text-foreground">
-      <ul className="flex space-x-4">
+    <nav className="sticky top-0 z-50 w-full p-4 bg-background/80 backdrop-blur-md border-b border-border text-foreground">
+      <ul className="flex space-x-6">
         <li>
           <Link href="/" className="hover:underline">
             Home
